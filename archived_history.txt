@@ -1,0 +1,354 @@
+commit 83ca0a15501a3533cda04c2c3579982f3967ab00
+Author: Justin P Linick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Thu Nov 8 13:09:53 2018 -0800
+
+    clear settings.conf
+
+commit 4afc2e7fecad5535bce096f3758a75cec0158630
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Fri Oct 5 12:43:58 2018 -0700
+
+    allow ops to add site-packages
+
+commit 67dae9b293dbca91a28109893db299a54d22be73
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Fri Oct 5 12:41:43 2018 -0700
+
+    skip conda python
+
+commit ad28ea334ed514c5436da29d50d550a2a4a58f93
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Thu Oct 4 10:19:27 2018 -0700
+
+    use land area in comparison operator
+
+commit ea66067a2a3c53d40d1d4e5d6dbcf81cef82cfeb
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Thu Oct 4 09:40:02 2018 -0700
+
+    build water_mask under conda
+
+commit eca581627252893a1daafe758f5521f390c5bad9
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Wed Oct 3 10:36:25 2018 -0700
+
+    lazy load water mask
+
+commit 94e1e842c6bf32a9a3bb35d07c762e18649c5514
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Tue Oct 2 10:57:47 2018 -0700
+
+    pip build mask env
+
+commit 1777f5dd4a1e2171af7cbca117f00a02c9c3ff01
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Tue Oct 2 10:13:38 2018 -0700
+
+    skip activate
+
+commit c271d1ca1cb40c0be453ee56870b8ee3010e4964
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Tue Oct 2 09:54:49 2018 -0700
+
+    add permissions to packages dir
+
+commit 8eeda9809658fd10f8006561f97ec80f4d1fb649
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Tue Oct 2 09:51:26 2018 -0700
+
+    install mask without root
+
+commit 35b245736da5bd811ba12c7c6857ed8c6c6c3c93
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Thu Sep 27 10:53:58 2018 -0700
+
+    build with sudo under ops
+
+commit c5a2001ae7fb859199473651def2ac369349cf68
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Wed Sep 26 12:51:27 2018 -0700
+
+    test rollback
+
+commit fb1c45f3cebc25f304ce58280b5e42151458b301
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Wed Sep 26 12:25:08 2018 -0700
+
+    use python from env
+
+commit 1a037f78b60059b5cea9d720f8bb3af544b7397d
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Wed Sep 26 12:02:59 2018 -0700
+
+    add privs to repo before install
+
+commit c403a0a6ed6fdcbb48399b237a67b428c92ac0fb
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Tue Sep 25 15:40:18 2018 -0700
+
+    build water_mask as ops
+
+commit da792868551342e8b1d4f6bea1b3ecf0c5451d81
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Tue Sep 25 15:29:53 2018 -0700
+
+    update build order of water mask
+
+commit 7832176cfb54fa1262e93a859f3af8caad33cab3
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Tue Sep 25 15:18:02 2018 -0700
+
+    install water mask as ops
+
+commit cc028d5344da4d3dd58ff750a37cd1a726c3a1f9
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Tue Sep 25 12:18:23 2018 -0700
+
+    adding source
+
+commit 88bda1fc9d494c7512ecb0e9c58da75f216cf781
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Tue Sep 25 10:46:44 2018 -0700
+
+    add privs for setuptools water_mask install
+
+commit 2d17fb126251cca64ee7611e69f31cae76f4acce
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Tue Sep 25 10:43:43 2018 -0700
+
+    cleanup Dockerfile
+
+commit 14b0dfe06987bb1d88c3635e6cc5455c5b57730c
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Mon Sep 24 12:44:31 2018 -0700
+
+    remove dir if exists
+
+commit 232f7cde327e8ea863f90ce9aaa96744365ad9ba
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Mon Sep 24 12:41:49 2018 -0700
+
+    use gdal base
+
+commit 0e42c87a51f22007cdc1dfc0c70af2bd0c62a3d4
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Mon Sep 24 11:59:58 2018 -0700
+
+    add python dev package in docker build
+
+commit 46636ae4357847018e3964a720ec87e01c6573fd
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Mon Sep 24 11:56:36 2018 -0700
+
+    add packages for fiona
+
+commit 169c36a1d72fd4dad6ce8a577e8772b57201ad58
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Mon Sep 24 11:49:02 2018 -0700
+
+    isce giant doesn't export args
+
+commit 46b029c93e15edd991c94b10aed7619f02862a4f
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Mon Sep 24 11:42:35 2018 -0700
+
+    try isce-giant base for fiona install
+
+commit e30703fe783599e6ff54f1df824ab44684a7caf0
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Mon Sep 24 11:38:57 2018 -0700
+
+    running build with auth
+
+commit 76c693f3ef1de5c928fe90773048ea71a6ddc5bd
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Mon Sep 24 11:37:24 2018 -0700
+
+    fix string passing in docker
+
+commit b47fb283f71897d3e06f36bb1c1543ab8f4c3fa2
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Mon Sep 24 11:35:46 2018 -0700
+
+    arg git oauth token
+
+commit 200db825bd63882677a89121f77522a1fa426ac2
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Mon Sep 24 11:27:00 2018 -0700
+
+    switch package install order
+
+commit 9ab01e48c828fb5dce46f9eab5f7d4ba62edc5e5
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Mon Sep 24 11:21:37 2018 -0700
+
+    docker run from ops user
+
+commit b867ecef74942c5013e2b9ee754544890df78ec1
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Mon Sep 24 11:13:32 2018 -0700
+
+    update for new uid passing
+
+commit 1080b85078e88c4c9fc1558068ea836daa9a39f5
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Mon Sep 24 11:05:45 2018 -0700
+
+    use pge-base
+
+commit 175aadb94c7791b612f9ed48615353a12aa13b89
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Mon Sep 24 11:03:20 2018 -0700
+
+    update git oauth docker arg passing
+
+commit 255b28cda751e31594ec036bf1bae8c4361e11b9
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Mon Sep 24 10:52:43 2018 -0700
+
+    skip user permissions in Dockerfile
+
+commit ce19e6ab1c2ac2350ec39917fec144c94afe4b25
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Mon Sep 24 10:42:00 2018 -0700
+
+    add lightweight water mask
+
+commit 2ff60c21dbf0fb454bbbb967238ff7804f0eb912
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Thu Sep 20 17:47:50 2018 -0700
+
+    force depth to be float
+
+commit c69274120a690e45ea9e5adbe576669d5ad3a4a2
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Thu Sep 20 12:20:30 2018 -0700
+
+    use grq url in slack notification
+
+commit 242724adaba7095ca2207e647e747b8b10af2f4f
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Mon Aug 27 10:49:15 2018 -0700
+
+    add depth filter
+
+commit 13c6de1136affb3b8f93d4d14f7d0d1f69a35b97
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Tue Aug 14 12:02:31 2018 -0700
+
+    pass label through event_metadata
+
+commit 57445b70035919952a03f119adeb51da349e9b61
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Tue Aug 14 10:52:10 2018 -0700
+
+    add label to create_aoi event_metadata passthrough
+
+commit ee74e01c4f92b291fc81a8a2db5854abb97a923f
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Tue Aug 14 10:26:03 2018 -0700
+
+    add human readable label
+
+commit 426ea1459acbe5f8130ebb39fff5e08d58646de4
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Thu Jul 12 18:26:40 2018 +0000
+
+    add account & username passthrough
+
+commit 83ee709a48d1b1fa323d100871aff6bd89ce995e
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Thu Jul 12 16:49:45 2018 +0000
+
+    update to smaller docker image base
+
+commit ba866ba3b03be66675427ea9486d060e53e84a46
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Thu Jun 28 18:17:26 2018 +0000
+
+    set type eq
+
+commit f718c7d987bfb1dc9cb07ad259bab8df9d199c97
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Thu Jun 28 17:16:23 2018 +0000
+
+    update type for datasets mapping
+
+commit 64cda5a8efaf62eb5aefdf98a15a4719a5101f4f
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Thu Jun 28 04:04:02 2018 +0000
+
+    set slack key to optional
+
+commit 206c1af6c0bdd8d07527dfac59fafe1278b2087d
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Sat Jun 23 02:38:15 2018 +0000
+
+    use event id as identifier
+
+commit 06663b9ea5397009b8a70b84bae05f0350bad375
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Sat Jun 23 02:24:18 2018 +0000
+
+    update webhook for @channel
+
+commit 3eaddbcfd1f2b46e07a4257a167ebb8f3928f917
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Sat Jun 23 01:55:49 2018 +0000
+
+    remove event product post publish
+
+commit 9104256758cd3d4f9440f5f6f3bcd9655dc139f3
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Sat Jun 23 01:50:15 2018 +0000
+
+    adding test and channel alerts for slack notifications
+
+commit 3721babce0039e4a642d43279afef4d27cf5c766
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Sat Jun 23 01:37:09 2018 +0000
+
+    allow for no filter
+
+commit ba425191e12c53a12490a76b54192303641b4f69
+Merge: 46d6279 96bc408
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Sat Jun 23 00:41:03 2018 +0000
+
+    update dockerfiles for separate repo
+
+commit 96bc408eaae013bc0da0a7d6781a9313dbfa6901
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Sat Jun 23 00:29:23 2018 +0000
+
+    update event threshold status
+
+commit b29ebe71bb18d011d099d4b08d6ef9dc706e1d7e
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Sat Jun 23 00:27:57 2018 +0000
+
+    update params for submission
+
+commit d9cd4c7b9d65ee9da06ac6d1021621dcf6664cb7
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Fri Jun 22 22:52:12 2018 +0000
+
+    update dynamic threshold
+
+commit 46d627939a1827973b377e6d81baaa547509fd6b
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Fri Jun 22 22:03:59 2018 +0000
+
+    update params for simple aoi submission
+
+commit dc3cbbbecb45386d220ff814960c1fae599c0a2b
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Wed Jun 20 15:56:01 2018 -0700
+
+    update job spec timeout
+
+commit b90c6ce2239065524196d154126e8db9523b00d2
+Author: jlinick <Justin.P.Linick@jpl.nasa.gov>
+Date:   Wed Jun 20 15:48:47 2018 -0700
+
+    PGE init

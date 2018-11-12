@@ -1,0 +1,39 @@
+{
+	"type": "Feature",
+	"properties": {
+		"mag": 6,
+		"place": "Test Region",
+		"time": 1525242768880,
+		"updated": 1525300967040,
+		"tz": -420,
+		"url": "https://earthquake.usgs.gov/earthquakes/eventpage/us1000test",
+		"detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us1000test&format=geojson",
+		"felt": null,
+		"cdi": null,
+		"mmi": 2.54,
+		"alert": "green",
+		"status": "reviewed",
+		"tsunami": 0,
+		"sig": 554,
+		"net": "us",
+		"code": "1000test",
+		"ids": ",us1000test,",
+		"sources": ",us,",
+		"types": ",geoserve,losspager,moment-tensor,origin,phase-data,shakemap,",
+		"nst": null,
+		"dmin": 3.514,
+		"rms": 1.33,
+		"gap": 38,
+		"magType": "mww",
+		"type": "earthquake",
+		"title": "M 6.0 - Test region"
+	},
+	"geometry": {
+		"type": "Point",
+		"coordinates": [-118.173980,
+			34.199327,
+			10
+		]
+	},
+	"id": "us1000test"
+}

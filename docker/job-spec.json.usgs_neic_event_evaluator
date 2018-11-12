@@ -1,0 +1,59 @@
+{
+  "command":"/home/ops/verdi/ops/usgs_neic_evaluator/usgs_neic_event_evaluator_wrapper.sh",
+  "imported_worker_files": {
+    "/home/ops/.netrc": "/home/ops/.netrc",
+    "/home/ops/.aws": "/home/ops/.aws"
+  },
+  "recommended-queues" : [
+    "grfn-job_worker-large",
+    "aria-job_worker-large",
+    "mem-job_worker-large",
+    "dwr-job_worker-large",
+    "urgent-response-job_worker-large"
+  ],
+  "disk_usage":"50GB",
+  "soft_time_limit": 900,
+  "time_limit": 1800,
+  "params" : [
+    { 
+      "name": "localize_url",
+      "destination": "localize"
+    },
+    {
+      "name": "path",
+      "destination": "positional"
+    },
+    {
+      "name": "create_aoi_version",
+      "destination": "positional"
+    },
+    {
+      "name": "account",
+      "destination": "context"
+    },
+    {
+      "name": "days_pre_event",
+      "destination": "positional"
+    },
+    {
+      "name": "days_post_event",
+      "destination": "positional"
+    },
+    {
+      "name": "filter_type",
+      "destination": "positional"
+    },
+    {
+      "name": "water_mask",
+      "destination": "positional"
+    },
+    {
+      "name": "slack_notification_key",
+      "destination": "positional"
+    },
+    {
+      "name": "username",
+      "destination": "context"
+    }
+  ]
+}

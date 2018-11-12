@@ -1,0 +1,63 @@
+{
+  "label" : "USGS NEIC Event Evaluator",
+  "allowed_accounts": [ "ops" ],
+  "params" : [
+    { 
+      "name": "localize_url",
+      "from": "dataset_jpath:_source",
+      "lambda": "lambda ds: filter(lambda x: x.startswith('s3://'), ds['urls'])[0]"
+    },
+    { 
+      "name": "path",
+      "from": "dataset_jpath:_source",
+      "lambda": "lambda ds: __import__('os').path.basename(filter(lambda x: x.startswith('s3://'), ds['urls'])[0])"
+    },
+    {
+      "name": "create_aoi_version",
+      "from": "submitter",
+      "type": "jobspec_version",
+      "version_regex": "create_aoi"
+    },
+    {
+      "name": "account",
+      "from": "submitter",
+      "type": "enum",
+      "enumerables": ["grfn","ariamh","urgent-response","mem"],
+      "default": "urgent-response"
+    },
+    {
+      "name": "days_pre_event",
+      "from": "submitter",
+      "type": "text",
+      "default": "30"
+    },
+    {
+      "name": "days_post_event",
+      "from": "submitter",
+      "type": "text",
+      "default": "30"
+    },
+    {
+      "name": "filter_type",
+      "from": "submitter",
+      "type": "enum",
+      "enumerables": ["dynamic", "none"]
+    },
+    {
+      "name": "water_mask",
+      "from": "submitter",
+      "type": "text",
+      "default": "50"
+    },
+    {
+      "name": "slack_notification_key",
+      "from": "submitter",
+      "type": "text",
+      "optional": true
+    },
+    {
+      "name": "username",
+      "from": "passthrough"
+    }
+  ]
+}

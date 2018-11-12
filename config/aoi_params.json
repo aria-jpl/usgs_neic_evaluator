@@ -1,0 +1,12 @@
+{
+  "name": "usgs_neic_pdl_event",
+  "project": "ariamh",
+  "type": "earthquake",
+  "geojson_polygon": [],
+  "starttime": "",
+  "eventtime": "",
+  "endtime": "",
+  "emails": "aria-ops@jpl.nasa.gov",
+  "additional_metadata": {"image_url": "", "event_metadata": []},
+  "username": "ops"
+}
