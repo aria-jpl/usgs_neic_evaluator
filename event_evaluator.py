@@ -6,7 +6,10 @@ is relevant above the input filter criteria. If it passes
 this filter, an aoi type for the event is created and submitted
 to create_aoi
 '''
+from __future__ import division
 
+from builtins import range
+from past.utils import old_div
 import os
 import re
 import sys
@@ -103,7 +106,7 @@ def run_water_filter(event_info, amount):
        import lightweight_water_mask
        if lightweight_water_mask.get_land_area(event_info['location']) > amount:
             return True
-    except Exception, err:
+    except Exception as err:
         print('Failed on water masking: {}'.format(err))
         return True
     return False
@@ -167,29 +170,29 @@ def get_event(event_path):
     return event_object
 
 def get_met(product, key):
-    if key in product.keys():
+    if key in list(product.keys()):
         return product[key]
-    if '_source' in product.keys() and key in product['_source'].keys():
+    if '_source' in list(product.keys()) and key in list(product['_source'].keys()):
         return product['_source'][key]
-    if '_source' in product.keys() and 'metadata' in product['_source'].keys() and key in product['_source']['metadata'].keys():
+    if '_source' in list(product.keys()) and 'metadata' in list(product['_source'].keys()) and key in list(product['_source']['metadata'].keys()):
         return product['_source']['metadata'][key]
-    if 'metadata' in product.keys() and key in product['metadata'].keys():
+    if 'metadata' in list(product.keys()) and key in list(product['metadata'].keys()):
         return product['metadata'][key]
-    if 'metadata' in product.keys() and 'properties' in product['metadata'].keys() and key in product['metadata']['properties'].keys():
+    if 'metadata' in list(product.keys()) and 'properties' in list(product['metadata'].keys()) and key in list(product['metadata']['properties'].keys()):
         return product['metadata']['properties'][key]
-    if 'properties' in product.keys() and key in product['properties']:
+    if 'properties' in list(product.keys()) and key in product['properties']:
         return product['properties'][key]
     return False
 
 def shift(lat, lon, bearing, distance):
     R = 6378.1  # Radius of the Earth
-    bearing = math.pi * bearing / 180  # convert degrees to radians
+    bearing = old_div(math.pi * bearing, 180)  # convert degrees to radians
     lat1 = math.radians(lat)  # Current lat point converted to radians
     lon1 = math.radians(lon)  # Current long point converted to radians
-    lat2 = math.asin(math.sin(lat1) * math.cos(distance / R) +
-                     math.cos(lat1) * math.sin(distance / R) * math.cos(bearing))
-    lon2 = lon1 + math.atan2(math.sin(bearing) * math.sin(distance / R) * math.cos(lat1),
-                             math.cos(distance / R) - math.sin(lat1) * math.sin(lat2))
+    lat2 = math.asin(math.sin(lat1) * math.cos(old_div(distance, R)) +
+                     math.cos(lat1) * math.sin(old_div(distance, R)) * math.cos(bearing))
+    lon2 = lon1 + math.atan2(math.sin(bearing) * math.sin(old_div(distance, R)) * math.cos(lat1),
+                             math.cos(old_div(distance, R)) - math.sin(lat1) * math.sin(lat2))
     lat2 = math.degrees(lat2)
     lon2 = math.degrees(lon2)
     return [lon2, lat2]
@@ -199,7 +202,7 @@ def determine_extent(lat, lon, mag):
     lon = float(lon)
     mag = float(mag)
     distance = (mag - 5.0) / 2.0 * 150
-    l = range(0, 361, 20)
+    l = list(range(0, 361, 20))
     coordinates = []
     for b in l:
         coords = shift(lat, lon, b, distance)

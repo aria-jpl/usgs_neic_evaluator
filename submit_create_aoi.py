@@ -33,7 +33,7 @@ def main(job_params, version, queue, priority, tags):
         print('submission job failed')
         r.raise_for_status()
     result = r.json()
-    if 'result' in result.keys() and 'success' in result.keys():
+    if 'result' in list(result.keys()) and 'success' in list(result.keys()):
         if result['success'] == True:
             job_id = result['result']
             print('submitted create_aoi job version: %s job_id: %s' % (version, job_id))
