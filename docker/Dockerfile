@@ -1,4 +1,4 @@
-FROM hysds/pge-base:latest
+FROM hysds/pge-base:develop-es1
 
 MAINTAINER jlinick "alexander.p.torres@jpl.nasa.gov"
 LABEL description="USGS NEIC event evaluation"
