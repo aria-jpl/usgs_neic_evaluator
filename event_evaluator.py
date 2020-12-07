@@ -35,11 +35,12 @@ def main(event_path, depth_filter=None, mag_filter=None, alertlevel_filter=None,
         return
     # process the aoi params
     params = build_params(event, event_info, days_pre_event, days_post_event)
+    print(params) #mlucas
     #submit the aoi
-    submit_create_aoi.main(params, create_aoi_version, 'factotum-job_worker-small' , '7', 'create_neic_event_aoi')
+    #mlucas submit_create_aoi.main(params, create_aoi_version, 'factotum-job_worker-small' , '7', 'create_neic_event_aoi')
     #run slack notification
-    if slack_notification:
-        run_slack_notification(event, slack_notification)
+    #mlucas if slack_notification:
+    #mlucas    run_slack_notification(event, slack_notification)
 
 def pass_filters(event_info, depth_filter, mag_filter, alertlevel_filter, polygon_filter, water_filter, dynamic_threshold):
     '''runs all requisite filters, returning true if it needs to process, false if not'''
