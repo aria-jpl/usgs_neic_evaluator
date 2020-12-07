@@ -18,8 +18,8 @@ USER ops
 COPY . /home/ops/verdi/ops/usgs_neic_evaluator
 RUN set -ex \
     && source /home/ops/verdi/bin/activate \
-    && sudo chown -R ops:ops /home/ops/verdi/ops/usgs_neic_evaluator \
-    && sudo chown -R ops:ops /opt/conda/lib/python3.7/site-packages
+    && sudo chown -R ops:ops /home/ops/verdi/ops/usgs_neic_evaluator
+    #&& sudo chown -R ops:ops /opt/conda/lib/python3.7/site-packages
 
 
 # install water mask
