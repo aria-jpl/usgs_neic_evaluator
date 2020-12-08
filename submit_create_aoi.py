@@ -23,7 +23,7 @@ def main(job_params, version, queue, priority, tags):
         'queue': queue,
         'priority': int(priority),
         'tags': '[{0}]'.format(parse_job_tags(tags)),
-        'type': 'job-create_aoi:%s' % version,
+        'type': 'job-create_aoi_track:%s' % version,
         'params': json.dumps(job_params),
         'enable_dedup': False
     }

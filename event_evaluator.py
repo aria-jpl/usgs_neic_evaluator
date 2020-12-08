@@ -37,7 +37,7 @@ def main(event_path, depth_filter=None, mag_filter=None, alertlevel_filter=None,
     params = build_params(event, event_info, days_pre_event, days_post_event)
     print(params) #mlucas
     #submit the aoi
-    #mlucas submit_create_aoi.main(params, create_aoi_version, 'factotum-job_worker-small' , '7', 'create_neic_event_aoi')
+    submit_create_aoi.main(params, create_aoi_version, 'factotum-job_worker-small' , '8', 'create_neic_event_aoi')
     #run slack notification
     #mlucas if slack_notification:
     #mlucas    run_slack_notification(event, slack_notification)
