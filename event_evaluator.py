@@ -63,13 +63,13 @@ def pass_filters(event_info, depth_filter, mag_filter, alertlevel_filter, polygo
             return False
         print('event passed water mask.')
     # run dynamic thresholding
-    if dynamic_threshold:
-        if run_dynamic_threshold(event_info):
-            print('event meets dynamic threshold, submitting event.')
-            return True
-        else:
-            print('event does not meet dynamic threshold. not submitting event.')
-            return False
+    #if dynamic_threshold:
+    #    if run_dynamic_threshold(event_info):
+    #        print('event meets dynamic threshold, submitting event.')
+    #        return True
+    #    else:
+    #        print('event does not meet dynamic threshold. not submitting event.')
+    #        return False
     if mag_filter: # run magnitude filter
         if event_info['mag'] >= mag_filter:
             print('event passes magnitude filter, processing')
@@ -227,6 +227,8 @@ def build_params(event, event_info, days_pre_event, days_post_event):
     event_metadata = build_event_metadata(event, event_info) #builds additional metadata to be displayed
     params['name'] = aoi_name
     params['geojson_polygon'] = geojson_polygon
+    params['track_number'] = "track_number"
+    params['orbit_direction'] = "orbit_direction"
     params['starttime'] = starttime
     params['eventtime'] = eventtime
     params['endtime'] = endtime
