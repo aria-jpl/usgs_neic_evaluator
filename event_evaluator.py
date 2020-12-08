@@ -89,7 +89,7 @@ def pass_filters(event_info, depth_filter, mag_filter, alertlevel_filter, polygo
 
 def calculate_event_info(event):
     '''builds a dict of relevant event information, such as magnitude, region, etc, returns it as a dict'''
-    event_id = get_met(event, 'id')
+    event_id = "AOI_TRACK_eq_usgs_neic_pdl_" + get_met(event, 'id')
     event_mag = float(get_met(event, 'mag'))
     event_alertlevel = get_met(event, 'alert')
     event_location = get_met(event, 'epicenter')
