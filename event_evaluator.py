@@ -89,7 +89,7 @@ def pass_filters(event_info, depth_filter, mag_filter, alertlevel_filter, polygo
 
 def calculate_event_info(event):
     '''builds a dict of relevant event information, such as magnitude, region, etc, returns it as a dict'''
-    event_id = "AOI_TRACK_eq_usgs_neic_pdl_" + get_met(event, 'id')
+    event_id = get_met(event, 'id')
     event_mag = float(get_met(event, 'mag'))
     event_alertlevel = get_met(event, 'alert')
     event_location = get_met(event, 'epicenter')
@@ -276,9 +276,9 @@ def build_aoi_name(event, event_info):
         location_str = location_str.replace(',','')
         mag = get_met(event, 'mag')
         mag_str = "{0:0.1f}".format(float(mag))
-        return 'usgs_neic_pdl_{0}_{1}_{2}'.format(id_str, mag_str, location_str)
+        return 'AOI_TRACK_eq_usgs_neic_pdl_{0}_{1}_{2}'.format(id_str, mag_str, location_str)
     except:
-        return 'usgs_neic_pdl_{0}'.format(event_info['id'])
+        return 'AOI_TRACK_eq_usgs_neic_pdl_{0}'.format(event_info['id'])
 
 def convert_epoch_time_to_utc(epoch_timestring):
     dt = datetime.datetime.utcfromtimestamp(epoch_timestring).replace(tzinfo=pytz.UTC)

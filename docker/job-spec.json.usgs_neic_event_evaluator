@@ -5,11 +5,7 @@
     "/home/ops/.aws": "/home/ops/.aws"
   },
   "recommended-queues" : [
-    "grfn-job_worker-large",
-    "aria-job_worker-large",
-    "mem-job_worker-large",
-    "dwr-job_worker-large",
-    "urgent-response-job_worker-large"
+    "factotum-job_worker-large"
   ],
   "disk_usage":"50GB",
   "soft_time_limit": 900,
