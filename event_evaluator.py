@@ -227,13 +227,13 @@ def build_params(event, event_info, days_pre_event, days_post_event):
     event_metadata = build_event_metadata(event, event_info) #builds additional metadata to be displayed
     params['name'] = aoi_name
     params['geojson_polygon'] = geojson_polygon
-    params['track_number'] = "track_number"
-    params['orbit_direction'] = "orbit_direction"
+    params['track_number'] = ""
+    params['orbit_direction'] = ""
     params['starttime'] = starttime
     params['eventtime'] = eventtime
     params['endtime'] = endtime
-    params['additional_metadata']['image_url']= aoi_image_url
-    params['additional_metadata']['event_metadata'] = event_metadata
+    #params['additional_metadata']['image_url']= aoi_image_url
+    #params['additional_metadata']['event_metadata'] = event_metadata
     #load account and username from context
     context = load_json('_context.json')
     params['account'] = context['account']
@@ -252,6 +252,7 @@ def build_event_metadata(event, event_info):
     event_met = {}
     event_met['event id'] = event_info['id']
     event_met['magnitude'] = event_info['mag']
+    event_met['depth'] = event_info['depth']
     event_met['location'] = get_met(event, 'place')
     event_met['latitude'] = event_info['lat']
     event_met['longitude'] = event_info['lon']
