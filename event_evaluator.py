@@ -232,8 +232,8 @@ def build_params(event, event_info, days_pre_event, days_post_event):
     params['starttime'] = starttime
     params['eventtime'] = eventtime
     params['endtime'] = endtime
-    #params['additional_metadata']['image_url']= aoi_image_url
-    #params['additional_metadata']['event_metadata'] = event_metadata
+    params['additional_metadata']['image_url']= aoi_image_url
+    params['additional_metadata']['event_metadata'] = event_metadata
     #load account and username from context
     context = load_json('_context.json')
     params['account'] = context['account']
