@@ -55,7 +55,7 @@ def main(event_polygon):
         tmp.append(tracks[track]['orbit_direction'])
         track_data.append(tmp)
         print(tmp)
-    print("Track Data:")
+    print("This is what is sent out")
     print(track_data)
     return track_data
 
