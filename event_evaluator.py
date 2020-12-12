@@ -22,6 +22,7 @@ from shapely.geometry import Polygon
 import requests
 import submit_create_aoi
 import submit_slack_notification
+import track_displacement_evaluator
 import pytz
 
 def main(event_path, depth_filter=None, mag_filter=None, alertlevel_filter=None, polygon_filter=None, slack_notification=None, water_filter=False, dynamic_threshold=False, create_aoi_version='master', days_pre_event=30, days_post_event=30):
@@ -33,11 +34,19 @@ def main(event_path, depth_filter=None, mag_filter=None, alertlevel_filter=None,
     # determine if the event passes the requisite filters
     if not pass_filters(event_info, depth_filter, mag_filter, alertlevel_filter, polygon_filter, water_filter, dynamic_threshold):
         return
-    # process the aoi params
-    params = build_params(event, event_info, days_pre_event, days_post_event)
-    print(params) #mlucas
-    #submit the aoi
-    submit_create_aoi.main(params, create_aoi_version, 'factotum-job_worker-small' , '8', 'create_neic_event_aoi')
+
+    # call displacement code
+    event_tracks = track_displacement_evaluator.main(event_info['location'])
+    # return track number, track geojson, and orbit direction
+
+    for event_track in event_tracks:
+        # process the aoi params
+        params = build_params(event, event_info, days_pre_event, days_post_event, event_track)
+        print("In event track loop")
+        print(params)
+        #submit the aoi
+        #submit_create_aoi.main(params, create_aoi_version, 'factotum-job_worker-small' , '8', 'create_neic_event_aoi')
+
     #run slack notification
     #mlucas if slack_notification:
     #mlucas    run_slack_notification(event, slack_notification)
@@ -98,6 +107,7 @@ def calculate_event_info(event):
     event_depth = float(event['metadata']['geometry']['coordinates'][2])
     #determine event extent
     event_geojson = determine_extent(event_lat, event_lon, event_mag)
+    # call displacement_evaluator here
     return {'id':event_id, 'mag':event_mag, 'depth':event_depth, 'alertlevel':event_alertlevel, 'location':event_geojson, 'lat':event_lat, 'lon':event_lon}
 
 def run_water_filter(event_info, amount):
@@ -210,7 +220,7 @@ def determine_extent(lat, lon, mag):
         coordinates.append(coords)
     return {"coordinates": [coordinates], "type": "Polygon"}
 
-def build_params(event, event_info, days_pre_event, days_post_event):
+def build_params(event, event_info, days_pre_event, days_post_event, event_track):
     '''builds parameters for a job submission from the event, which creates the aoi,
     and returns those parameters'''
     #loads the config json
@@ -225,10 +235,10 @@ def build_params(event, event_info, days_pre_event, days_post_event):
     endtime = determine_time(aoi_event_time, float(days_post_event))
     aoi_image_url = parse_browse_url(event)     
     event_metadata = build_event_metadata(event, event_info) #builds additional metadata to be displayed
-    params['name'] = aoi_name
-    params['geojson_polygon'] = geojson_polygon
-    params['track_number'] = ""
-    params['orbit_direction'] = ""
+    params['name'] = aoi_name + "_" + event_track[0]
+    params['geojson_polygon'] = event_track[1]
+    params['track_number'] = event_track[0]
+    params['orbit_direction'] = event_track[2]
     params['starttime'] = starttime
     params['eventtime'] = eventtime
     params['endtime'] = endtime
