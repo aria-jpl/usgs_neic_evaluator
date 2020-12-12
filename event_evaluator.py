@@ -45,7 +45,7 @@ def main(event_path, depth_filter=None, mag_filter=None, alertlevel_filter=None,
         print("In event track loop")
         print(params)
         #submit the aoi
-        #submit_create_aoi.main(params, create_aoi_version, 'factotum-job_worker-small' , '8', 'create_neic_event_aoi')
+        submit_create_aoi.main(params, create_aoi_version, 'factotum-job_worker-small' , '8', 'create_neic_event_aoi')
 
     #run slack notification
     #mlucas if slack_notification:
