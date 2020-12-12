@@ -229,6 +229,9 @@ def build_params(event, event_info, days_pre_event, days_post_event, event_track
     params = json.load(open(params_path, 'r'))
     aoi_name = build_aoi_name(event, event_info)
     geojson_polygon = event_info['location']
+    print("Event info CHECK")
+    print(event_info['location'])
+    print(event_track[1])
     aoi_event_time = get_met(event, 'starttime')
     starttime = determine_time(aoi_event_time, -1 * float(days_pre_event))
     eventtime = get_met(event, 'starttime')
