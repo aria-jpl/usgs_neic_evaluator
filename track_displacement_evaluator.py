@@ -30,9 +30,10 @@ def main(event_polygon):
     # Get track numbers and polygons for all acquisitions then create a list for each track and populate
     # the lists with acquisition polygons over those tracks
     for product in products['products']:
-        track_number, polygon = getAcqInfo(product)
+        track_number, polygon, acq_id = getAcqInfo(product)
         tracks[track_number].append(polygon)
         count = count + 1
+        print("Track {}: {}".format(track_number, acq_id))
     print("Number of acquisitions that intersect with event polygon: " + str(count))
 
     # Build track data objects
@@ -69,6 +70,7 @@ def convertToPolygon(event_polygon):
 
 def getAcqInfo(product):
     try:
+        acq_id = product['identifier']
         indexes = product['indexes'][0]
         children = indexes['children'][5]
         track = indexes['children'][17]
@@ -77,7 +79,7 @@ def getAcqInfo(product):
     except:
         print("Failed to parse acquisition metadata for: {}".format(product))
         return 1
-    return track_number, polygon
+    return track_number, polygon, acq_id
 
 #if __name__ == "__main__":
     #parser = argparse.ArgumentParser(description=__doc__)
