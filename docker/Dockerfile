@@ -27,7 +27,7 @@ RUN git clone https://github.com/hysds/lightweight_water_mask.git /home/ops/verd
 RUN set -ex \
     &&sudo chown -R ops:ops /home/ops/verdi/ops/lightweight_water_mask \
     && cd /home/ops/verdi/ops/lightweight_water_mask \
-    && /home/ops/verdi/bin/pip install -e .
+    && /home/ops/verdi/bin/pip install -e . \
     && pip install geojson
 
 
