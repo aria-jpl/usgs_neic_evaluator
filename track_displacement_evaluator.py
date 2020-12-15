@@ -41,7 +41,6 @@ def main(event_polygon):
             tracks[track_number]["orbit_direction"] = orbit_direction
             tracks[track_number]["acq_id"].append(acq_id)
         count = count + 1
-
     print("Number of acquisitions that intersect with event polygon: " + str(count))
 
     # Build track data objects {[track number, union polygon, orbit direction], ...}
