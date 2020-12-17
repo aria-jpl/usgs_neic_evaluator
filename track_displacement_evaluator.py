@@ -21,6 +21,8 @@ import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 def main(event_polygon, extended_event_polygon):
+    print("The extended polygon: {}".format(extended_event_polygon))
+    print("The event polygon: {}".format(event_polygon))
 
     track_data = []
     count = 0
@@ -32,9 +34,6 @@ def main(event_polygon, extended_event_polygon):
     if not grq.ping():
        print("Failed to connect to host.")
        return 1
-
-    # Convert the event polygon into a shapely polygon
-    #tmp_polygon = convertToPolygon(event_polygon)
 
     doc = {"query":{"filtered":{"query":{"bool":{"must":[{"term":{"dataset.raw":"acquisition-S1-IW_SLC"}}]}},"filter":{"geo_shape":{"location":{"shape":{"type":"polygon","coordinates":event_polygon}}}}}},"size":constants.SIZE,"sort":[{"_timestamp":{"order":"desc"}}],"fields":["_timestamp","_source"]}
     res = grq.search(index=constants.GRQ_ACQUISITION_INDEX, body=doc)
@@ -72,8 +71,6 @@ def main(event_polygon, extended_event_polygon):
         # AOI bbox -- starts out with the complete displacement estimator and is carved down
         # to a smaller piece track-by-track
         tmp_intersect = tmp_intersect.intersection(boundary)
-        #tmp_intersect_json = shapely.geometry.mapping(tmp_intersect)
-        #poly_json = json.dumps(tmp_intersect_json)
 
         # Save track data for create-aoi-track job submission
         tmp.append(track)
