@@ -237,7 +237,7 @@ def build_params(event, event_info, days_pre_event, days_post_event, event_track
     aoi_event_time = get_met(event, 'starttime')
     starttime = determine_time(aoi_event_time, -1 * float(days_pre_event))
     eventtime = get_met(event, 'starttime')
-    endtime = determine_time(aoi_event_time, float(days_post_event + 365))
+    endtime = determine_time(aoi_event_time, float(days_post_event) + 365)
     aoi_image_url = parse_browse_url(event)     
     event_metadata = build_event_metadata(event, event_info) #builds additional metadata to be displayed
     if isTrack:
