@@ -36,11 +36,18 @@ def main(event_path, depth_filter=None, mag_filter=None, alertlevel_filter=None,
         return
 
     # call displacement code
-    event_tracks = track_displacement_evaluator.main(event['location']['coordinates'])
+    event_tracks, aoi = track_displacement_evaluator.main(event['location']['coordinates'], event_info['location']['coordinates'])
+
+    # submit job for event AOI
+    params = build_params(event, event_info, days_pre_event, days_post_event, aoi, False)
+    print("AOI:")
+    print(params)
+    # submit the aoi
+    submit_create_aoi.main(params, create_aoi_version, 'factotum-job_worker-small', '8', 'create_neic_event_aoi')
 
     for event_track in event_tracks:
         # process the aoi params
-        params = build_params(event, event_info, days_pre_event, days_post_event, event_track)
+        params = build_params(event, event_info, days_pre_event, days_post_event, event_track, True)
         print(params)
         #submit the aoi
         submit_create_aoi.main(params, create_aoi_version, 'factotum-job_worker-small' , '8', 'create_neic_event_aoi')
@@ -218,18 +225,15 @@ def determine_extent(lat, lon, mag):
         coordinates.append(coords)
     return {"coordinates": [coordinates], "type": "Polygon"}
 
-def build_params(event, event_info, days_pre_event, days_post_event, event_track):
+def build_params(event, event_info, days_pre_event, days_post_event, event_track, isTrack):
     '''builds parameters for a job submission from the event, which creates the aoi,
     and returns those parameters'''
     #loads the config json
     current_dir = os.path.dirname(os.path.realpath(__file__))
     params_path = os.path.join(current_dir, 'config', 'aoi_params.json')
     params = json.load(open(params_path, 'r'))
-    aoi_name = build_aoi_name(event, event_info)
+    aoi_name = build_aoi_name(event, event_info, isTrack)
     geojson_polygon = event_info['location']
-    print("Event info CHECK")
-    print(event_info['location'])
-    print(event_track[1])
     aoi_event_time = get_met(event, 'starttime')
     starttime = determine_time(aoi_event_time, -1 * float(days_pre_event))
     eventtime = get_met(event, 'starttime')
@@ -277,20 +281,34 @@ def build_event_metadata(event, event_info):
     event_met['usgs information'] = 'https://earthquake.usgs.gov/earthquakes/eventpage/{0}'.format(event_info['id'])
     return event_met
 
-def build_aoi_name(event, event_info):
+def build_aoi_name(event, event_info, isTrack):
     '''attempts to build a readable event name'''
-    try:
-        id_str = get_met(event, 'id')
-        place = get_met(event, 'place')
-        regex = re.compile(' of (.*)[,]? (.*)')
-        match = re.search(regex, place)
-        location_str = '{0}_{1}'.format(match.group(1), match.group(2))
-        location_str = location_str.replace(',','')
-        mag = get_met(event, 'mag')
-        mag_str = "{0:0.1f}".format(float(mag))
-        return 'AOITRACK_eq_usgs_neic_pdl_{0}_{1}_{2}'.format(id_str, mag_str, location_str)
-    except:
-        return 'AOITRACK_eq_usgs_neic_pdl_{0}'.format(event_info['id'])
+    if isTrack:
+        try:
+            id_str = get_met(event, 'id')
+            place = get_met(event, 'place')
+            regex = re.compile(' of (.*)[,]? (.*)')
+            match = re.search(regex, place)
+            location_str = '{0}_{1}'.format(match.group(1), match.group(2))
+            location_str = location_str.replace(',','')
+            mag = get_met(event, 'mag')
+            mag_str = "{0:0.1f}".format(float(mag))
+            return 'AOITRACK_eq_usgs_neic_pdl_{0}_{1}_{2}'.format(id_str, mag_str, location_str)
+        except:
+            return 'AOITRACK_eq_usgs_neic_pdl_{0}'.format(event_info['id'])
+    else:
+        try:
+            id_str = get_met(event, 'id')
+            place = get_met(event, 'place')
+            regex = re.compile(' of (.*)[,]? (.*)')
+            match = re.search(regex, place)
+            location_str = '{0}_{1}'.format(match.group(1), match.group(2))
+            location_str = location_str.replace(',','')
+            mag = get_met(event, 'mag')
+            mag_str = "{0:0.1f}".format(float(mag))
+            return 'AOI_monitoring_{0}_{1}_{2}'.format(id_str, mag_str, location_str)
+        except:
+            return 'AOI_monitoring_{0}'.format(event_info['id'])
 
 def convert_epoch_time_to_utc(epoch_timestring):
     dt = datetime.datetime.utcfromtimestamp(epoch_timestring).replace(tzinfo=pytz.UTC)
