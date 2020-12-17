@@ -240,10 +240,16 @@ def build_params(event, event_info, days_pre_event, days_post_event, event_track
     endtime = determine_time(aoi_event_time, float(days_post_event))
     aoi_image_url = parse_browse_url(event)     
     event_metadata = build_event_metadata(event, event_info) #builds additional metadata to be displayed
-    params['name'] = aoi_name + "_" + event_track[0]
-    params['geojson_polygon'] = json.loads(str(event_track[1]))
-    params['track_number'] = event_track[0]
-    params['orbit_direction'] = event_track[2]
+    if isTrack:
+        params['name'] = aoi_name + "_" + str(event_track[0])
+        params['geojson_polygon'] = json.loads(event_track[1])
+        params['track_number'] = event_track[0]
+        params['orbit_direction'] = event_track[2]
+    else:
+        params['name'] = aoi_name
+        params['geojson_polygon'] = event_track
+        params['track_number'] = ""
+        params['orbit_direction'] = ""
     params['starttime'] = starttime
     params['eventtime'] = eventtime
     params['endtime'] = endtime
