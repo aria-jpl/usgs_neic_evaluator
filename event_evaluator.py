@@ -121,9 +121,9 @@ def run_water_filter(event_info, amount):
     try:
        # lazy loading
        import lightweight_water_mask
+       print("Geojson being processed: {}".format(event_info['location']))
        land_area = lightweight_water_mask.get_land_area(event_info['location'])
        if land_area > amount:
-          print("Geojson being processed: {}".format(event_info['location']))
           print("Land area of event is {}".format(land_area))
           print("Threshold: {}".format(amount))
           return True
