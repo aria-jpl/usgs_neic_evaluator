@@ -33,6 +33,7 @@ def main(event_path, depth_filter=None, mag_filter=None, alertlevel_filter=None,
     event_info = calculate_event_info(event)
     # determine if the event passes the requisite filters
     if not pass_filters(event_info, depth_filter, mag_filter, alertlevel_filter, polygon_filter, water_filter, dynamic_threshold):
+        print("Event failed to pass filters....not generating AOI.")
         return
 
     # call displacement code
@@ -120,8 +121,11 @@ def run_water_filter(event_info, amount):
     try:
        # lazy loading
        import lightweight_water_mask
-       if lightweight_water_mask.get_land_area(event_info['location']) > amount:
-            return True
+       land_area = lightweight_water_mask.get_land_area(event_info['location'])
+       if land_area > amount:
+          print("Geojson being processed: {}".format(event_info['location']))
+          print("Land area of event is {}".format(land_area))
+          return True
     except Exception as err:
         print('Failed on water masking: {}'.format(err))
         return True
