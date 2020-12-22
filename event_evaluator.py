@@ -123,10 +123,13 @@ def run_water_filter(event_info, amount):
        import lightweight_water_mask
        print("Geojson being processed: {}".format(event_info['location']))
        land_area = lightweight_water_mask.get_land_area(event_info['location'])
+       print("Land area is: {}".format(land_area))
        if land_area > amount:
           print("Land area of event is {}".format(land_area))
           print("Threshold: {}".format(amount))
           return True
+       else:
+          print("Land area less than {}".format(amount))
     except Exception as err:
         print('Failed on water masking: {}'.format(err))
         return True
