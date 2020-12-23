@@ -29,7 +29,7 @@ RUN set -ex \
     && cd /home/ops/verdi/ops/lightweight_water_mask \
     && /home/ops/verdi/bin/pip install -e . \
     && /home/ops/verdi/bin/pip install geojson \
-    && /home/ops/verdi/bin/pip install 'pyproj==1.9.6' --force-reinstall
+    && /home/ops/verdi/bin/pip install 'pyproj==2.6.0' --force-reinstall
 
 
 #RUN echo "source /opt/conda/bin/activate root" >> ~/.bashrc \
