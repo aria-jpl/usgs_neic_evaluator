@@ -1,7 +1,7 @@
 [
   {
     "region_name": "united_states",
-    "distance_from_land": "260",
+    "distance_from_land": "60",
     "distance_from_land_units": "km",
     "region_geojson": {
       "type": "Polygon",

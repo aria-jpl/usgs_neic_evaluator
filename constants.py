@@ -4,3 +4,6 @@ SIZE = 1000
 
 # Job Submission
 FACTOTUM_SMALL_QUEUE = 'factotum-job_worker-small'
+
+# Event evaluator
+EARTH_RADIUS = 6371

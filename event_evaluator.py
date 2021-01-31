@@ -26,6 +26,7 @@ from shapely import wkt
 import geojson
 from shapely.geometry import shape, Point, Polygon
 from shapely.ops import nearest_points
+import constants
 
 
 def main(event_path, depth_filter=None, mag_filter=None, alertlevel_filter=None, polygon_filter=None, slack_notification=None, water_filter=False, dynamic_threshold=False, create_aoi_version='master', days_pre_event=30, days_post_event=30, distance_from_land=50):
@@ -165,7 +166,11 @@ def run_distance_filter(event_info, distance_from_land):
     nearest_distance = None
 
     # Read config file that defines region geojson and region-specific params
-    f = open('config/regions.json')
+    try:
+        f = open('/home/ops/verdi/ops/usgs_neic_evaluator/config/regions.json')
+    except Exception as e:
+        print(e)
+
     data = json.load(f)
     for region in data:
         # If a distance_from_land parameter is specified in the region, pull it; if not, use default
@@ -188,6 +193,11 @@ def run_distance_filter(event_info, distance_from_land):
             lng = event_info["event_location"]["coordinates"][1]
             lat = event_info["event_location"]["coordinates"][0]
             point = Point(lng, lat)
+
+            # If event overlaps with region, no need to calculate distance; event will be processed
+            if point.within(polygon):
+                print("Event epicenter is within a defined region. Processing event.")
+                return True
 
             np1, np2 = nearest_points(polygon, point)
             nearest_distance = haversine(np1.y, np1.x, point.y, point.x)
@@ -220,7 +230,6 @@ def haversine(lat1, lon1, lat2, lon2):
     Calculate the distance between two points
     '''
 
-    Rearth = 6371
     lat1 = math.radians(lat1)
     lon1 = math.radians(lon1)
     lat2 = math.radians(lat2)
@@ -230,15 +239,14 @@ def haversine(lat1, lon1, lat2, lon2):
     dlat = lat2 - lat1
     a = math.sin(dlat / 2) ** 2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2) ** 2
     c = 2 * math.asin(math.sqrt(a))
-    return Rearth * c
+    return constants.EARTH_RADIUS * c
 
 
 def get_coord(lat, lng):
-    R = 6371  # Earth radius (km)
     lat_r = math.radians(lat)
     lng_r = math.radians(lng)
-    x = R * math.cos(lat_r) * math.cos(lng_r)
-    y = R * math.cos(lat_r) * math.sin(lng_r)
+    x = constants.EARTH_RADIUS * math.cos(lat_r) * math.cos(lng_r)
+    y = constants.EARTH_RADIUS * math.cos(lat_r) * math.sin(lng_r)
     return x, y
 
 
