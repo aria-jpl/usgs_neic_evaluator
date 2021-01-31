@@ -56,6 +56,12 @@
       "optional": true
     },
     {
+      "name": "distance_from_land",
+      "from": "submitter",
+      "type": "text",
+      "default": "50"
+    },
+    {
       "name": "username",
       "from": "passthrough"
     }

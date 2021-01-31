@@ -48,6 +48,10 @@
       "destination": "positional"
     },
     {
+      "name": "distance_from_land",
+      "destination": "positional"
+    },
+    {
       "name": "username",
       "destination": "context"
     }
