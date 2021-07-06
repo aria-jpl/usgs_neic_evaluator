@@ -3,6 +3,9 @@
 '''
 Submits a notification to the ARIA slack channel
 '''
+from __future__ import division
+from builtins import str
+from past.utils import old_div
 import re
 import json
 import argparse
@@ -46,7 +49,7 @@ def slack_notify(event, key):
     readable_event_time = event_dt.strftime("%H:%M.%S")
     now = datetime.datetime.now()
     delta = now - event_dt
-    min_ago = str(int(delta.total_seconds()/60))
+    min_ago = str(int(old_div(delta.total_seconds(),60)))
     aria_base_url = app.conf['GRQ_ES_URL'].rstrip(':9200').replace('http://', 'https://')
     aria_url = "<" + aria_base_url + "/search/?source={%22query%22:{%22bool%22:{%22must%22:[{%22term%22:{%22dataset_type.raw%22:%22area_of_interest%22}},{%22query_string%22:{%22query%22:%22\%22" + aoi_name + "\%22%22,%22default_operator%22:%22OR%22}}]}},%22sort%22:[{%22_timestamp%22:{%22order%22:%22desc%22}}],%22fields%22:[%22_timestamp%22,%22_source%22]}|ARIA generated AOI>"
     #title

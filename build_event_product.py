@@ -4,7 +4,10 @@
 Builds a HySDS event product from the USGS NEIC event feed
 
 '''
+from __future__ import division
 
+from builtins import range
+from past.utils import old_div
 import os
 import re
 import json
@@ -75,13 +78,13 @@ def build_point_geojson(event):
 
 def shift(lat, lon, bearing, distance):
     R = 6378.1  # Radius of the Earth
-    bearing = math.pi * bearing / 180  # convert degrees to radians
+    bearing = old_div(math.pi * bearing, 180)  # convert degrees to radians
     lat1 = math.radians(lat)  # Current lat point converted to radians
     lon1 = math.radians(lon)  # Current long point converted to radians
-    lat2 = math.asin(math.sin(lat1) * math.cos(distance / R) +
-                     math.cos(lat1) * math.sin(distance / R) * math.cos(bearing))
-    lon2 = lon1 + math.atan2(math.sin(bearing) * math.sin(distance / R) * math.cos(lat1),
-                             math.cos(distance / R) - math.sin(lat1) * math.sin(lat2))
+    lat2 = math.asin(math.sin(lat1) * math.cos(old_div(distance, R)) +
+                     math.cos(lat1) * math.sin(old_div(distance, R)) * math.cos(bearing))
+    lon2 = lon1 + math.atan2(math.sin(bearing) * math.sin(old_div(distance, R)) * math.cos(lat1),
+                             math.cos(old_div(distance, R)) - math.sin(lat1) * math.sin(lat2))
     lat2 = math.degrees(lat2)
     lon2 = math.degrees(lon2)
     return [lon2, lat2]
@@ -90,7 +93,7 @@ def build_polygon_geojson(event):
     lat = float(event['geometry']['coordinates'][1])
     lon = float(event['geometry']['coordinates'][0])
     radius = 2.0
-    l = range(0, 361, 20)
+    l = list(range(0, 361, 20))
     coordinates = []
     for b in l:
         coords = shift(lat, lon, b, radius)
